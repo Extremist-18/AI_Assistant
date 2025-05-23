@@ -11,6 +11,7 @@ from features.greet import greet
 from features.yt_services import *
 from features.news import *
 from features.screenshot import take_screenshot
+from features.calendar import *
 
 class AIAssistant:
     def __init__(self):
@@ -85,10 +86,15 @@ class AIAssistant:
             cleaned = name.replace(" ", "")
             speak("Where should I save it?")
             path = self.listen()
-            if not "desktop" in command
+            if not "desktop" in command:
                 take_screenshot(file_name=cleaned, location=path)
             else:
                 take_screenshot(file_name = cleaned,location = None)    
+        elif "remind" in command:
+            service  = get_calendar_service()
+            create_event(service,command)  
+        elif "weather" in command or "temperature" in command:
+            get_weather()    
         elif "send email" in command or "send an email" in command:
             recipient_key = self.get_recipient(command)
             if not recipient_key or recipient_key not in self.emails:
