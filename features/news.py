@@ -6,7 +6,7 @@ import sys
 sys.path.insert(0,'C:/Users/yasha/Desktop/Assistant/utils')
 from util import speak
 
-def fetch_toi_headlines(limit):
+def fetch_toi_headlines(limit=3):
     api_key = os.getenv("NEWS_API")
     if not api_key:
         raise ValueError("API key not found. Please check your .env file.")
@@ -26,7 +26,7 @@ def fetch_toi_headlines(limit):
 
 
 def speak_headlines(limit):
-    headlines = fetch_toi_headlines(limit=limit)
+    headlines = fetch_toi_headlines(limit=3)
     print(headlines)
     speak(f"Here are the top {limit} headlines from Times of India.")
     x = 1

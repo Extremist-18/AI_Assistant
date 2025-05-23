@@ -6,7 +6,11 @@ import base64
 from email.message import EmailMessage
 import os
 
-SCOPES = ['https://www.googleapis.com/auth/gmail.send']
+# SCOPES = ['https://www.googleapis.com/auth/gmail.send']
+SCOPES = [
+    'https://www.googleapis.com/auth/calendar',
+    'https://www.googleapis.com/auth/gmail.send'
+]
 
 def gmail_authenticate():
     creds = None
