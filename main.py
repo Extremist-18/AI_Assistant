@@ -1,4 +1,4 @@
-# take note, hide files and make them visible again
+# hide files and make them visible again
 import speech_recognition as sr
 import pyttsx3
 import re

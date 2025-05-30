@@ -43,10 +43,6 @@ class AssistantGUI(QWidget):
         self.thread.exit_signal.connect(self.close_app) 
         self.initUI()
         self.thread.start()
-    
-    def close_app(self):
-        self.close()
-        # QApplication.quit()  # or self.close()
         
     def initUI(self):
         self.setWindowTitle(" Futuristic AI Assistant")
@@ -66,8 +62,8 @@ class AssistantGUI(QWidget):
         # GIF
         self.gif_label = QLabel(self)
         self.gif_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        movie = QMovie("media/ai_loop.gif")
-        movie.setScaledSize(QSize(300, 200))
+        movie = QMovie("assets/ai_loop.gif")
+        movie.setScaledSize(QSize(320, 220))
         self.gif_label.setMovie(movie)
         movie.start()
 

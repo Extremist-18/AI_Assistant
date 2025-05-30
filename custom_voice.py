@@ -1,9 +1,7 @@
-# utils/tts_elevenlabs.py
-
 import requests
 import os
 import tempfile
-from playsound import playsound  # pip install playsound==1.2.2
+from playsound import playsound 
 
 def tts_elevenlabs(text, voice_id, api_key):
     try:
