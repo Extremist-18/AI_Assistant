@@ -20,6 +20,10 @@ def get_search_result(command):
     speak(f"Searching for {searching}")
     service = Service(executable_path="./chromedriver.exe")
     driver = webdriver.Chrome(service=service)
+    # open new tab
+    driver.execute_script("window.open('');")
+    driver.switch_to.window(driver.window_handles[-1])
+
     # driver = webdriver.Chrome(executable_path="./chromedriver.exe")
     url = "https://www.google.co.in/search?q=" + searching.replace(" ", "+")
     driver.get(url)

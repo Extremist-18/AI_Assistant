@@ -1,4 +1,4 @@
-# add music, take note, hide files and make them visible again
+# take note, hide files and make them visible again
 import speech_recognition as sr
 import pyttsx3
 import re
@@ -12,15 +12,22 @@ from features.yt_services import *
 from features.news import *
 from features.screenshot import take_screenshot
 from features.calendar import *
+from features.voice_note import *
+from features.weather import get_weather
+from custom_voice import tts_elevenlabs
+
+load_dotenv()
 
 class AIAssistant:
     def __init__(self):
         self.recognizer = sr.Recognizer()
         self.engine = pyttsx3.init()
         self.MIC_INDEX = 2
+        self.voice_id = os.getenv("VOICE_ID")
+        self.api = os.getenv("API_KEY")
         self.emails = {
-            "lalit": "lalitagrawal1808@gmail.com",
-            "lalit college": "u21ec050@eced.svnit.ac.in"
+            "john": "lalitagrawal1808@gmail.com",
+            "Agrawal": "u21ec050@eced.svnit.ac.in"
         }
 
     def speak(self, text):
@@ -33,6 +40,13 @@ class AIAssistant:
         except:
             print("Sorry Sir, I didn't understand!")
 
+    def speak_custom(self,text):
+        try:
+            tts_elevenlabs(text, self.voice_id, self.api)
+        except:
+            self.engine.say(text)
+            self.engine.runAndWait()
+        
     def listen(self):
         try:
             with sr.Microphone(device_index=self.MIC_INDEX) as source:
@@ -94,7 +108,13 @@ class AIAssistant:
             service  = get_calendar_service()
             create_event(service,command)  
         elif "weather" in command or "temperature" in command:
-            get_weather()    
+            get_weather()  
+        elif "take note" in command or "note" in command:
+            take_note()    
+        elif "custom voice" in command or "voice" in command or "change voice" in command:
+            self.speak("What do you want to hear in that custom voice sir?")
+            text = self.listen()
+            self.speak_custom(text)      
         elif "send email" in command or "send an email" in command:
             recipient_key = self.get_recipient(command)
             if not recipient_key or recipient_key not in self.emails:
@@ -113,7 +133,8 @@ class AIAssistant:
         return True
 
     def run(self):
-        # greet()
+        greet()
+        # take_note()
         while True:
             command = self.listen()
             if not command:
