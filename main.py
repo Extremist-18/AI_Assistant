@@ -11,7 +11,7 @@ from features.greet import greet
 from features.yt_services import *
 from features.news import *
 from features.screenshot import take_screenshot
-from features.calendar import *
+from features.calendar_events import *
 from features.voice_note import *
 from features.weather import get_weather
 from custom_voice import tts_elevenlabs
@@ -30,6 +30,9 @@ class AIAssistant:
             "Agrawal": "u21ec050@eced.svnit.ac.in"
         }
 
+    def greet(self):
+        greet()
+        
     def speak(self, text):
         try:
             voices = self.engine.getProperty('voices')
@@ -140,8 +143,11 @@ class AIAssistant:
             if not command:
                 self.speak("Please try again.")
                 continue
+            
             if not self.handle_command(command):
                 break
+    
+        return False        
 
 if __name__ == "__main__":
     assistant = AIAssistant()

@@ -15,9 +15,11 @@ class AssistantThread(QThread):
     def __init__(self, assistant):
         super().__init__()
         self.assistant = assistant
+        self._running = True  # Adding flag
 
     def run(self):
-        while True:
+        # self.assistant.greet()
+        while self._running:
             command = self.assistant.listen()
             if command:
                 self.result_signal.emit(f'You: {command}')
@@ -26,24 +28,29 @@ class AssistantThread(QThread):
                     self.result_signal.emit(
                         '<div align="center"><span style="font-size:20px; color:#ff4444;">Assistant: Shutting down in 5 seconds...</span></div>'
                     )
-                    # QMetaObject.invokeMethod(QApplication.instance(), "processEvents")
                     QApplication.processEvents()
                     time.sleep(5)
+                    self._running = False  # Update flag
                     self.exit_signal.emit()
                     break
                 self.result_signal.emit("Assistant: Task complete")
-
-
+                
 class AssistantGUI(QWidget):
     def __init__(self):
         super().__init__()
         self.assistant = AIAssistant()
         self.thread = AssistantThread(self.assistant)
         self.thread.result_signal.connect(self.update_output)
-        self.thread.exit_signal.connect(self.close_app) 
+        self.thread.exit_signal.connect(self.close_assistant)  # <-- Connect here
         self.initUI()
         self.thread.start()
-        
+    
+    def close_assistant(self):
+        self.thread.quit()
+        self.thread.wait()
+        self.close()             # Close the QWidget
+        QApplication.quit() 
+    
     def initUI(self):
         self.setWindowTitle(" Futuristic AI Assistant")
         self.setGeometry(200, 100, 800, 750)

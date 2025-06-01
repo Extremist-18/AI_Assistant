@@ -1,5 +1,4 @@
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
+import webbrowser
 import re
 import time
 import sys 
@@ -7,24 +6,19 @@ sys.path.insert(0, 'C:/Users/yasha/Desktop/Assistant/utils')
 from util import speak, listen
 
 def get_search_result(command):
-    key = re.search("search google for (.+)",command)
-
-    # searching = command.split("for",1)[1] 
-    # url = "https://google.co.in/search?q="
+    key = re.search("search google for (.+)", command)
     if not key:
-        speak("Didn't understood Sir, Please Repeat again!")
+        speak("Didn't understood, please try again")
         return
     
     searching = key.group(1).strip()
     speak("Okay Sir!")
     speak(f"Searching for {searching}")
-    service = Service(executable_path="./chromedriver.exe")
-    driver = webdriver.Chrome(service=service)
-    # open new tab
-    driver.execute_script("window.open('');")
-    driver.switch_to.window(driver.window_handles[-1])
-
-    # driver = webdriver.Chrome(executable_path="./chromedriver.exe")
+    
     url = "https://www.google.co.in/search?q=" + searching.replace(" ", "+")
-    driver.get(url)
+    
+    brave_path = "C:/Program Files/BraveSoftware/Brave-Browser/Application/brave.exe"
+    webbrowser.register('brave', None, webbrowser.BackgroundBrowser(brave_path))
+    webbrowser.get('brave').open_new_tab(url)
+
     time.sleep(10)

@@ -2,10 +2,10 @@ from datetime import datetime
 import sys
 import pytz   
 UTC = pytz.utc 
+IST = pytz.timezone('Asia/Kolkata') 
 sys.path.insert(0, 'C:/Users/yasha/Desktop/Assistant/utils')
 from util import speak, listen
 
-IST = pytz.timezone('Asia/Kolkata') 
 
 def tell_date():
     x = datetime.now()
@@ -18,7 +18,10 @@ def tell_time():
     return speak(x)
 
 def tell_date_time():
-    speak("Todays date is ")
-    tell_date()
-    speak("And current time is ")
-    tell_time()
+    speak("Here's the current date and time.")
+    x = datetime.now().strftime("%d %B %Y")
+    speak(f"Today is {x}.")
+
+    time_ist = datetime.now(IST).strftime("%I:%M %p")
+    speak(f"The time now is {time_ist}.")
+    
