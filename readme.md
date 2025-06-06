@@ -1,6 +1,6 @@
-# NOVA – Next-gen Operating Virtual Assistant
+# NOVA – Next-gen Operating Voice Assistant
 
-**NOVA** (Next-gen Operating Virtual Assistant) is a desktop-based AI assistant powered by voice recognition, intelligent automation, and a modern PyQt6 interface. It enables hands-free control over tasks such as email management, calendar scheduling, music playback, weather updates, web search, and more.
+**NOVA** (Next-gen Operating Voice Assistant) is a desktop-based AI assistant powered by voice recognition, intelligent automation, and a modern PyQt6 interface. It enables hands-free control over tasks such as email management, calendar scheduling, music playback, weather updates, web search, and more.
 
 ---
 

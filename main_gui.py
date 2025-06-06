@@ -62,7 +62,7 @@ class AssistantGUI(QWidget):
         title.setFont(QFont("Orbitron", 22))
         title.setStyleSheet("color: #00ffe1;")
 
-        self.acronym = QLabel(" Next-gen Operating Virtual Assistant",self)
+        self.acronym = QLabel(" Next-gen Operating Voice Assistant",self)
         self.acronym.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.acronym.setFont(QFont("Orbitron",18))
         self.acronym.setStyleSheet("padding: 8px; color: #00ffe1;")
