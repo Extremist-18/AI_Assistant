@@ -60,11 +60,9 @@ def music_yt(song_name):
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 
     try:
-        # Open YouTube with search
         driver.get(f"https://www.youtube.com/results?search_query={song_name}+official+video")
         time.sleep(3)
-
-        # Click first result
+        
         first_result = driver.find_element(By.ID, "video-title")
         first_result.click()
         time.sleep(5)
@@ -83,7 +81,6 @@ def music_yt(song_name):
             driver.quit()
             return
 
-        # Ensure video starts playing
         driver.execute_script("document.querySelector('video').play();")
         print("[INFO] Video started playing.")
 
@@ -101,7 +98,6 @@ def music_yt(song_name):
         driver.quit()
         return
 
-    # Only after everything is done
     driver.quit()
     print("[INFO] Assistant ready now.")
 

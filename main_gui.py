@@ -18,7 +18,7 @@ class AssistantThread(QThread):
         self._running = True  # Adding flag
 
     def run(self):
-        # self.assistant.greet()
+        self.assistant.greet()
         while self._running:
             command = self.assistant.listen()
             if command:
