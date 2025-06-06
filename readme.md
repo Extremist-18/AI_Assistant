@@ -4,6 +4,14 @@
 
 ---
 
+## 🎬 Demo
+
+Watch a live demo of NOVA in action on YouTube:
+
+[![Watch the Demo](https://img.youtube.com/vi/c39VS2pI5Mo/0.jpg)](https://www.youtube.com/watch?v=c39VS2pI5Mo)
+
+---
+
 ## Key Features
 
 ### Voice-Enabled Interaction
