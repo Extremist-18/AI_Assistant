@@ -65,3 +65,5 @@ Watch a live demo of NOVA in action on YouTube:
 | Wikipedia API        | Access to encyclopedic information           |
 
 ---
+
+Pov: Okay so lets be honest, Its too basic need more improvment and more functionalities. 
